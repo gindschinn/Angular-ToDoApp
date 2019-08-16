@@ -1,0 +1,64 @@
+@import '../../../sass/var'
+
+*
+    font-family: "Lato"
+
+.todo
+    height: 70px
+    min-width: 300px
+    border-radius: 5px
+    background-color: $lightgrey
+    display: flex
+    justify-content: space-between
+    align-items: center
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5)
+    margin-bottom: 10px
+    .handle
+        width: 4%
+        height: 100%
+        background-color: $pink
+        border-radius: 5px 0 0 5px
+    .handle:hover
+        cursor: pointer
+    .content
+        width: 100%
+        padding-left: 20px
+        display: flex
+        flex-direction: row
+        align-items: center
+        .status-check-box
+            display: flex
+            flex-direction: row    
+        .check-box
+            width: 35px
+            height: 35px
+            border: 2px solid $darkgrey
+            border-radius: 5px 
+        .check-box:hover
+            background-color: #fff
+            cursor: pointer  
+        input
+            width: 100%
+            padding-left: 40px
+            background-color: transparent
+            border: none
+            font-family: "Lato Light"
+            font-size: 18px
+            word-break: break-word
+
+    .delete
+        font-size: 30px  
+        margin-right: 20px 
+        img
+            max-height: 20px
+        img:hover
+            cursor: pointer
+// ------------------------------------------------------------- //    
+// Todo Done
+.todo-done
+    input
+        text-decoration: line-through
+    .handle
+        background-color: $teal
+    .handle:hover
+        pointer-events: none           
