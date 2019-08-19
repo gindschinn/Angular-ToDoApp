@@ -1,16 +1,20 @@
-<div class="todo">
+<!-- add class "done" if status is true(done) -->
+<div class="todo" [class.todo-done]="toDo$.status">
         <div class="handle"></div>
 
         <div class="content">
             <div class="status-check-box">
-                <div class="not-done check-box"></div>
-                <div class="done check-box">
+                <div *ngIf="!toDo$.status" (click)="changeCheck($event)" class="not-done check-box"></div>
+                <div *ngIf="toDo$.status" (click)="changeCheck($event)" class="done check-box">
                     <img src="../assets/svg/check.svg" alt="">
                 </div>
             </div>
-            <input type="text" placeholder="Open Todo">
+            <!-- two-way-binding of toDo$.title with formsmodule(app.module.ts) -->
+            <!-- blur = leaving the input field -->
+            <!-- input disabled if status is true(done) -->
+            <input (blur)="updateTitle($event)" type="text" [(ngModel)]="toDo$.title" placeholder="Palceholder">
         </div>
-        <div class="delete">
+        <div (click)="deleteToDo($event)" class="delete">
             <img src="../assets/svg/delete.svg" alt="">
         </div>
     </div>

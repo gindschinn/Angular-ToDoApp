@@ -1,0 +1,22 @@
+{
+  "todos": [
+    {
+      "title": "Erstes Todo",
+      "status": false,
+      "position": 1,
+      "id": 1
+    },
+    {
+      "title": "zweites Todo, Titel bearbeitet",
+      "status": false,
+      "position": 2,
+      "id": 2
+    },
+    {
+      "title": "drittes Todo",
+      "status": false,
+      "position": 3,
+      "id": 3
+    }
+  ]
+}

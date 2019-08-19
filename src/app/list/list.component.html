@@ -2,25 +2,26 @@
 
 <!-- Todos Separator -->
 <div class="list-container">
-    <div class="separator">open ( 0 )<br> 
+    <div (click)="toDoShow=!toDoShow" class="separator">open ( {{$todos.length}} )<br> 
         <div class="triangle-down"></div>
     </div>
     <hr>
 
-    <div class="todo-elements-container">
-        <app-todo></app-todo>
-        <app-todo></app-todo>
-        <app-todo></app-todo>
+    <div *ngIf="toDoShow" class="todo-elements-container">
+        <!-- forward toDo to child component -->
+        <!-- toDo$ from child component becomes toDo from Parent Component -->
+        <!-- list component commits todo from $todos Array to todo component -->
+        <app-todo (ping)="update($event)" [toDo$]="todo" *ngFor="let todo of $todos"></app-todo>
     </div>
-    <app-todo-form></app-todo-form>
+    <app-todo-form (ping)="create($event)"></app-todo-form>
 
 <!-- Todos Done Separator -->
-    <div class="separator">done ( 0 )<br> 
+    <div (click)="toDoDoneShow=!toDoDoneShow" class="separator">done ( {{$todosdone.length}} )<br> 
         <div class="triangle-down"></div>
     </div>
     <hr>
 
-    <div class="todo-elements-container">
-        <app-todo></app-todo>
+    <div *ngIf="toDoDoneShow" class="todo-elements-container">
+        <app-todo (ping)="update($event)" [toDo$]="todo" *ngFor="let todo of $todosdone"></app-todo>
     </div>
 </div>

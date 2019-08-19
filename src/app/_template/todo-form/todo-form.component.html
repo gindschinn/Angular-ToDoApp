@@ -1,8 +1,10 @@
 <div class="todo-form">
     <div class="content">
-        <input type="text" placeholder="Add a new todo">
+        <!-- binding of title with forms module -->
+        <!-- keyup event on enter -->
+        <input type="text" (keyup.enter)="createToDo($event)" [(ngModel)]="toDo$.title" placeholder="Add a new todo">
     </div>
-    <div class="add-todo">
+    <div class="add-todo" (click)="createToDo($event)">
        +
     </div>
 </div>
