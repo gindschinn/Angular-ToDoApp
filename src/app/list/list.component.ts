@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ToDo } from '../_interface/todo';
 import { EventPing } from '../_interface/eventping';
 import { DataService } from '../_service/data.service';
 import { Subscription } from 'rxjs';
+import { DragulaService } from 'ng2-dragula';
 
 
 @Component({
@@ -10,24 +11,54 @@ import { Subscription } from 'rxjs';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.sass']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
 
   public toDoShow: boolean;
   public toDoDoneShow: boolean;
   public $todos: ToDo[];
   public $todosdone: ToDo[];
+  public subs = new Subscription();
 
   constructor(
-    public _dataService: DataService
+    public _dataService: DataService,
+    public _dragulaService: DragulaService,
   ) { 
     this.toDoShow = true;
     this.toDoDoneShow = false;
     this.$todos = [];
     this.$todosdone = [];
     this.loadData();
+// Dragula     
+// Spill true would delete objects when pulled out of container
+    this._dragulaService.createGroup('todos', {
+      removeOnSpill: false
+    });
+
+    this.subs.add(_dragulaService.drop('todos')
+      .subscribe(({ el }) => {
+        this.position();
+      })
+    );
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
+
+  public position(): void {
+    let position = 0;
+    this.$todos.forEach((todo: ToDo) => {
+      position += 1;
+      todo.position = position;
+      this._dataService.updateTodo(todo).subscribe((data: ToDo) => {
+        console.log(`%cSUC: ${data.title} wurde neu positioniert`, `color: green`);
+      }, error => {
+        console.log(`%cERROR: ${error.message}`, `color: red`);
+      });
+    });
   }
 
   public loadData(): void {
@@ -41,6 +72,9 @@ export class ListComponent implements OnInit {
           this.$todos.push(toDo);
         }
       });
+      this.$todos.sort((obj1, obj2) => {
+        return obj1.position - obj2.position;
+      });
     }, error => {
       console.log(`%cERROR: ${error.message}`, `color: red; font-size: 12px`);
     });
@@ -51,7 +85,7 @@ export class ListComponent implements OnInit {
     this._dataService.postToDo(event).subscribe((data: ToDo) => {
       console.log(`%cSUC: "${data.title}" wurde erfolgreich erstellt`, `color: green`);
       this.$todos.push(data);
-      // this.position();
+      this.position();
     }, error => {
       console.log(`%cERROR: ${error.message}`, `color: red`);
     });

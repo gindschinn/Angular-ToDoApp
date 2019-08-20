@@ -3,11 +3,12 @@
 <!-- Todos Separator -->
 <div class="list-container">
     <div (click)="toDoShow=!toDoShow" class="separator">open ( {{$todos.length}} )<br> 
-        <div class="triangle-down"></div>
+        <div *ngIf="!toDoShow" class="triangle-down"></div>
+        <div *ngIf="toDoShow" class="triangle-up"></div>
     </div>
     <hr>
 
-    <div *ngIf="toDoShow" class="todo-elements-container">
+    <div *ngIf="toDoShow" class="todo-elements-container" dragula="todos" [dragulaModel]="$todos" (dragulaModelChange)="$todos = $event">
         <!-- forward toDo to child component -->
         <!-- toDo$ from child component becomes toDo from Parent Component -->
         <!-- list component commits todo from $todos Array to todo component -->
@@ -17,7 +18,8 @@
 
 <!-- Todos Done Separator -->
     <div (click)="toDoDoneShow=!toDoDoneShow" class="separator">done ( {{$todosdone.length}} )<br> 
-        <div class="triangle-down"></div>
+        <div *ngIf="!toDoDoneShow" class="triangle-down"></div>
+        <div *ngIf="toDoDoneShow" class="triangle-up"></div>
     </div>
     <hr>
 
