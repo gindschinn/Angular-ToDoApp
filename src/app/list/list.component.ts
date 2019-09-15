@@ -4,12 +4,39 @@ import { EventPing } from '../_interface/eventping';
 import { DataService } from '../_service/data.service';
 import { Subscription } from 'rxjs';
 import { DragulaService } from 'ng2-dragula';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.sass']
+  styleUrls: ['./list.component.sass'],
+  // transistion animation for conditional rendered Todoelements
+  animations: [
+    trigger(
+      'inOutAnimation', 
+      [
+        transition(
+          // element rendered to the DOM
+          ':enter', 
+          [
+            style({ height: 0, opacity: 0 }),
+            animate('1s ease-out', 
+                    style({ height: 70, opacity: 1 }))
+          ]
+        ),
+        transition(
+          // element leaving the DOM
+          ':leave', 
+          [
+            style({ height: 70, opacity: 1 }),
+            animate('1s ease-in', 
+                    style({ height: 0, opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class ListComponent implements OnInit, OnDestroy {
 

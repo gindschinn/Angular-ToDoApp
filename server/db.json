@@ -3,19 +3,19 @@
     {
       "title": "Erstes Todo",
       "status": false,
-      "position": 3,
+      "position": 1,
       "id": 1
     },
     {
       "title": "zweites Todo, Titel bearbeitet",
-      "status": false,
-      "position": 2,
+      "status": true,
+      "position": 1,
       "id": 2
     },
     {
       "title": "drittes Todo",
       "status": false,
-      "position": 1,
+      "position": 2,
       "id": 3
     },
     {
@@ -23,6 +23,18 @@
       "status": true,
       "position": 4,
       "id": 4
+    },
+    {
+      "title": "Still working",
+      "status": true,
+      "position": 2,
+      "id": 5
+    },
+    {
+      "title": "Much more to do",
+      "status": false,
+      "position": 3,
+      "id": 6
     }
   ]
 }

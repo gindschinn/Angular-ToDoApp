@@ -12,9 +12,11 @@
         <!-- forward toDo to child component -->
         <!-- toDo$ from child component becomes toDo from Parent Component -->
         <!-- list component commits todo from $todos Array to todo component -->
-        <app-todo (ping)="update($event)" [toDo$]="todo" *ngFor="let todo of $todos"></app-todo>
+        <app-todo [@inOutAnimation] class="todo-element" (ping)="update($event)" [toDo$]="todo" *ngFor="let todo of $todos"></app-todo>
     </div>
-    <app-todo-form (ping)="create($event)"></app-todo-form>
+    <div>
+        <app-todo-form (ping)="create($event)"></app-todo-form>
+    </div>
 
 <!-- Todos Done Separator -->
     <div (click)="toDoDoneShow=!toDoDoneShow" class="separator">done ( {{$todosdone.length}} )<br> 
@@ -24,6 +26,6 @@
     <hr>
 
     <div *ngIf="toDoDoneShow" class="todo-elements-container">
-        <app-todo (ping)="update($event)" [toDo$]="todo" *ngFor="let todo of $todosdone"></app-todo>
+        <app-todo [@inOutAnimation] (ping)="update($event)" [toDo$]="todo" *ngFor="let todo of $todosdone"></app-todo>
     </div>
 </div>
