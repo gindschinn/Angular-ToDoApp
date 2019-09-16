@@ -1,40 +1,16 @@
 {
   "todos": [
     {
-      "title": "Erstes Todo",
-      "status": false,
-      "position": 1,
-      "id": 1
-    },
-    {
-      "title": "zweites Todo, Titel bearbeitet",
-      "status": true,
-      "position": 1,
-      "id": 2
-    },
-    {
-      "title": "drittes Todo",
-      "status": false,
-      "position": 2,
-      "id": 3
-    },
-    {
-      "title": "Todo mit Position an letzter Stelle",
-      "status": true,
-      "position": 4,
-      "id": 4
-    },
-    {
-      "title": "Still working",
+      "title": "sleep until lunchtime",
       "status": true,
       "position": 2,
-      "id": 5
-    },
-    {
-      "title": "Much more to do",
-      "status": false,
-      "position": 3,
       "id": 6
+    },
+    {
+      "title": "feed the cat",
+      "status": false,
+      "position": 1,
+      "id": 11
     }
   ]
 }

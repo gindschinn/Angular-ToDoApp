@@ -11,11 +11,10 @@
     <div *ngIf="toDoShow" class="todo-elements-container" dragula="todos" [dragulaModel]="$todos" (dragulaModelChange)="$todos = $event">
         <!-- forward toDo to child component -->
         <!-- toDo$ from child component becomes toDo from Parent Component -->
-        <!-- list component commits todo from $todos Array to todo component -->
         <app-todo [@inOutAnimation] class="todo-element" (ping)="update($event)" [toDo$]="todo" *ngFor="let todo of $todos"></app-todo>
     </div>
-    <div>
-        <app-todo-form (ping)="create($event)"></app-todo-form>
+    <div class="todo-elements-container">
+        <app-todo-form class="todo-element" (ping)="create($event)"></app-todo-form>
     </div>
 
 <!-- Todos Done Separator -->
@@ -26,6 +25,6 @@
     <hr>
 
     <div *ngIf="toDoDoneShow" class="todo-elements-container">
-        <app-todo [@inOutAnimation] (ping)="update($event)" [toDo$]="todo" *ngFor="let todo of $todosdone"></app-todo>
+        <app-todo [@inOutAnimation] class="todo-element" (ping)="update($event)" [toDo$]="todo" *ngFor="let todo of $todosdone"></app-todo>
     </div>
 </div>

@@ -21,7 +21,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
           ':enter', 
           [
             style({ height: 0, opacity: 0 }),
-            animate('1s ease-out', 
+            animate('0.5s ease-out', 
                     style({ height: 70, opacity: 1 }))
           ]
         ),
@@ -30,7 +30,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
           ':leave', 
           [
             style({ height: 70, opacity: 1 }),
-            animate('1s ease-in', 
+            animate('0.5s ease-in', 
                     style({ height: 0, opacity: 0 }))
           ]
         )
